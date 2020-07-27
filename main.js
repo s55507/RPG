@@ -1,4 +1,4 @@
-let plyName = prompt("名前を入力してください");
+let plyName = prompt("プレイヤーの名前を入力してください");
 let clearflag = true;
 let flag = true;
 //プレイヤーデータ
