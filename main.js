@@ -425,16 +425,16 @@ eneImg.addEventListener("mouseup", () => {
       if (plyExpNext <= 0) {
         plyExpNext = plyExpNeed[plyLv];
         plyLv++;
-        plySt1.textContent = "レベル" + plyLv;
+        plySt1.textContent = "レベル:" + plyLv;
         plyHpMax = plyLv * 4 + 6;
         plyHp = plyHpMax;
-        plySt2.textContent = "HP" + plyHp;
+        plySt2.textContent = "HP:" + plyHp;
         plyAtt++;
-        plySt3.textContent = "攻撃力" + plyAtt;
+        plySt3.textContent = "攻撃力:" + plyAtt;
         if (plyLv / 2 == 1) {
           plyHeal++;
         }
-        plySt4.textContent = "回復魔法" + plyHeal;
+        plySt4.textContent = "回復魔法:" + plyHeal;
       }
       plySt6.textContent = "次のレベルまでの経験値" + plyExpNext + "ポイント";
     }
