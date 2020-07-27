@@ -431,7 +431,7 @@ eneImg.addEventListener("mouseup", () => {
         plySt2.textContent = "HP" + plyHp;
         plyAtt++;
         plySt3.textContent = "攻撃力" + plyAtt;
-        if (plyLv % 3) {
+        if (plyLv / 2 == 1) {
           plyHeal++;
         }
         plySt4.textContent = "回復魔法" + plyHeal;
