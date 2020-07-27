@@ -426,7 +426,7 @@ eneImg.addEventListener("mouseup", () => {
         plyExpNext = plyExpNeed[plyLv];
         plyLv++;
         plySt1.textContent = "レベル" + plyLv;
-        plyHpMax = plyLv * 2 + 6;
+        plyHpMax = plyLv * 4 + 6;
         plyHp = plyHpMax;
         plySt2.textContent = "HP" + plyHp;
         plyAtt++;
