@@ -443,7 +443,7 @@ let looph = setInterval(() => {
         if (plyExpNext <= 0) {
           plyExpNext = plyExpNeed[plyLv];
           plyLv++;
-          plySt1.textContent = "レベル" + plyLv;
+          plySt1.textContent = "レベル:" + plyLv;
           plyHpMax = plyLv * 6 + 6;
           plyHp = plyHpMax;
           plySt2.textContent = "HP:" + plyHp;
@@ -495,7 +495,7 @@ eneImg.addEventListener("mouseup", () => {
       if (plyExpNext <= 0) {
         plyExpNext = plyExpNeed[plyLv];
         plyLv++;
-        plySt1.textContent = "レベル" + plyLv;
+        plySt1.textContent = "レベル:" + plyLv;
         plyHpMax = plyLv * 6 + 6;
         plyHp = plyHpMax;
         plySt2.textContent = "HP:" + plyHp;
