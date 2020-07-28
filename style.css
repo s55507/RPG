@@ -9,3 +9,9 @@ h3 {
 #right {
   color: red;
 }
+h2 {
+  width: 200px;
+  text-align: right;
+  margin: 10px;
+  color: #bca9f5;
+}
