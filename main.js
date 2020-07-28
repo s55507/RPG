@@ -53,6 +53,12 @@ let plyExpNeed = [
   18000,
   19000,
   20000,
+  22000,
+  24000,
+  26000,
+  28000,
+  30000,
+  32000,
 ];
 let plyImg = document.getElementById("plyImg");
 let plySt = new Array(6);
@@ -120,7 +126,7 @@ let eneHp = new Array(
   670,
   700,
   730,
-  800
+  1200
 );
 let eneHpMax = new Array(
   10,
@@ -152,7 +158,7 @@ let eneHpMax = new Array(
   670,
   700,
   730,
-  800
+  1200
 );
 let eneAtt = new Array(
   2,
@@ -164,26 +170,26 @@ let eneAtt = new Array(
   10,
   9,
   12,
-  30,
-  20,
   25,
+  12,
+  14,
+  15,
+  18,
+  20,
+  22,
+  24,
   26,
-  27,
   28,
+  40,
   30,
   32,
+  34,
   35,
-  37,
-  40,
   38,
-  39,
-  40,
   41,
+  42,
   45,
-  46,
-  48,
   50,
-  52,
   60
 );
 let enekill = new Array(
@@ -233,22 +239,22 @@ let eneExp = new Array(
   30,
   33,
   35,
-  38,
   40,
-  43,
-  45,
-  47,
   50,
-  80,
   60,
-  65,
-  70,
   75,
-  80,
-  90,
   100,
-  120,
-  200
+  130,
+  230,
+  180,
+  230,
+  220,
+  250,
+  280,
+  300,
+  330,
+  350,
+  500
 );
 let eneCnt = new Array(
   5,
@@ -273,14 +279,14 @@ let eneCnt = new Array(
   5,
   5,
   5,
-  4,
+  3,
   6,
   7,
   5,
   4,
   6,
   5,
-  5
+  4
 );
 let eneCntMax = new Array(
   5,
@@ -305,14 +311,14 @@ let eneCntMax = new Array(
   5,
   5,
   5,
-  4,
+  3,
   6,
   7,
   5,
   4,
   6,
   5,
-  5
+  4
 );
 let eneImg = document.getElementById("eneImg");
 let eneName = new Array(
@@ -393,6 +399,70 @@ right.addEventListener("click", () => {
   }
 });
 
+//必殺技
+let kikku = document.getElementById("kikku");
+let count = document.getElementById("count");
+let ct = 0;
+
+let looph = setInterval(() => {
+  ct--;
+  if (ct < 0) {
+    ct = 0;
+  }
+  if (plyHp == 0) {
+    clearInterval(looph);
+    flag = false;
+  }
+  count.textContent = "次使えるまで残り" + ct + "秒";
+  kikku.addEventListener("mousedown", () => {
+    if (ct == 0 && flag) {
+      eneImg.src = "img/enemyB" + (eneLv - 1) + ".png";
+    }
+  });
+  kikku.addEventListener("mouseup", () => {
+    if (ct == 0 && flag) {
+      eneHp[eneLv - 1] -= plyAtt * 15;
+      if (eneHp[eneLv - 1] < 0) {
+        eneHp[eneLv - 1] = eneHpMax[eneLv - 1];
+
+        enekill[eneLv - 1]++;
+        eneSt4.textContent = "倒した回数:" + enekill[eneLv - 1];
+        //経験値処理
+        plyExp += eneExp[eneLv - 1];
+        plySt5.textContent = "経験値:" + plyExp;
+        plyExpNext -= eneExp[eneLv - 1];
+        //ゲームクリア演出
+        if (enekill[9] == 1 && clearflag) {
+          eneImg.src = "img/clear.png";
+          clearflag = false;
+          setTimeout(() => {
+            eneImg.src = "img/enemyA" + (eneLv - 1) + ".png";
+          }, 1500);
+        }
+        //レベルアップの処理
+        if (plyExpNext <= 0) {
+          plyExpNext = plyExpNeed[plyLv];
+          plyLv++;
+          plySt1.textContent = "レベル" + plyLv;
+          plyHpMax = plyLv * 6 + 6;
+          plyHp = plyHpMax;
+          plySt2.textContent = "HP:" + plyHp;
+          plyAtt++;
+          plySt3.textContent = "攻撃力:" + plyAtt;
+
+          plyHeal = Math.floor(plyLv * 0.3 + 1);
+
+          plySt4.textContent = "回復魔法:" + plyHeal;
+        }
+        plySt6.textContent = "次のレベルまでの経験値" + plyExpNext + "ポイント";
+      }
+      eneSt2.textContent = "HP:" + eneHp[eneLv - 1];
+    }
+    ct = 60;
+    eneImg.src = "img/enemyA" + (eneLv - 1) + ".png";
+  });
+}, 1000);
+
 //敵を攻撃
 eneImg.addEventListener("mousedown", () => {
   if (flag) {
@@ -425,15 +495,15 @@ eneImg.addEventListener("mouseup", () => {
       if (plyExpNext <= 0) {
         plyExpNext = plyExpNeed[plyLv];
         plyLv++;
-        plySt1.textContent = "レベル:" + plyLv;
-        plyHpMax = plyLv * 4 + 6;
+        plySt1.textContent = "レベル" + plyLv;
+        plyHpMax = plyLv * 6 + 6;
         plyHp = plyHpMax;
         plySt2.textContent = "HP:" + plyHp;
         plyAtt++;
         plySt3.textContent = "攻撃力:" + plyAtt;
-        if (plyLv / 2 == 1) {
-          plyHeal++;
-        }
+
+        plyHeal = Math.floor(plyLv * 0.3 + 1);
+
         plySt4.textContent = "回復魔法:" + plyHeal;
       }
       plySt6.textContent = "次のレベルまでの経験値" + plyExpNext + "ポイント";
@@ -458,6 +528,7 @@ let loop = setInterval(() => {
     } else {
       plyHp = 0;
       clearInterval(loop);
+
       flag = false;
       plySt2.textContent = "HP:" + plyHp;
       eneSec.textContent = "ゲームオーバー";
