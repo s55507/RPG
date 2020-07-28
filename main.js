@@ -421,7 +421,7 @@ let looph = setInterval(() => {
   });
   kikku.addEventListener("mouseup", () => {
     if (ct == 0 && flag) {
-      eneHp[eneLv - 1] -= plyAtt * 15;
+      eneHp[eneLv - 1] -= plyAtt * 20;
       if (eneHp[eneLv - 1] < 0) {
         eneHp[eneLv - 1] = eneHpMax[eneLv - 1];
 
