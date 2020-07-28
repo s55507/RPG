@@ -437,7 +437,7 @@ let looph = setInterval(() => {
           clearflag = false;
           setTimeout(() => {
             eneImg.src = "img/enemyA" + (eneLv - 1) + ".png";
-          }, 1500);
+          }, 2000);
         }
         //レベルアップの処理
         if (plyExpNext <= 0) {
@@ -489,7 +489,7 @@ eneImg.addEventListener("mouseup", () => {
         clearflag = false;
         setTimeout(() => {
           eneImg.src = "img/enemyA" + (eneLv - 1) + ".png";
-        }, 1500);
+        }, 2000);
       }
       //レベルアップの処理
       if (plyExpNext <= 0) {
